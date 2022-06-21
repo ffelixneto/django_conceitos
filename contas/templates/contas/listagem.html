@@ -16,5 +16,11 @@
         <li>{{ transacao.categoria }} : {{ transacao }} - {{ transacao.data }} - R$ {{ transacao.valor }}</li>
     {% endfor %}
     </ul>
+
+    <br/>
+    
+    <a href="{% url 'url_nova_transacao' %}">Nova Transação</button>
+    <br/>
+
 </body>
 </html>
