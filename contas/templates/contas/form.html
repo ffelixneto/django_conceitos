@@ -17,6 +17,9 @@
         {{ form.as_p }}
 
         <button type="submit"> Gravar </button>
+        {% if transacao %}
+            <button><a style="text-decoration: none; color: black;" href="{% url 'url_delete' transacao.id %}">Excluir</a></button>
+        {% endif %}
     </form>
 
 </body>

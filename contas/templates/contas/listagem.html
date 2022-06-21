@@ -13,7 +13,7 @@
 
     <ul>
     {% for transacao in transacoes %}
-        <li>{{ transacao.categoria }} : {{ transacao }} - {{ transacao.data }} - R$ {{ transacao.valor }}</li>
+        <li>{{ transacao.categoria }} : {{ transacao }} - {{ transacao.data }} - R$ {{ transacao.valor }} <a href="{% url 'url_update' transacao.id %}"> [atualizar]</a></li>
     {% endfor %}
     </ul>
 

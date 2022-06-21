@@ -18,7 +18,9 @@ from django.urls import path
 from contas.views import (
     home, 
     nova_transacao, 
-    listagem
+    listagem,
+    update,
+    delete
     )
 
 
@@ -27,4 +29,6 @@ urlpatterns = [
     path('home/', home),
     path('', listagem, name="url_listagem"),
     path('nova_transacao/', nova_transacao, name="url_nova_transacao"),
+    path('update/<int:pkey>/', update, name="url_update"),
+    path('delete/<int:pkey>/', delete, name="url_delete"),
 ]

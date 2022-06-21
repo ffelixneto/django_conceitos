@@ -8,7 +8,7 @@ from .forms import TransacaoForm
 
 def home(request):
     """
-    PAGINA HOME RETORNA A HORA ATUAL
+    VIEW HOME EXIBE A HORA ATUAL
     """
 
     # html = "<html><body>Quando são exactamente... %s.</body></html>" % agora
@@ -23,7 +23,7 @@ def home(request):
 
 def listagem(request):
     """
-    PAGINA PARA LISTAGEM DE TRANSAÇÕES
+    VIEW PARA LISTAGEM DE TRANSAÇÕES
     """
 
     tran_data = {}
@@ -32,7 +32,7 @@ def listagem(request):
 
 def nova_transacao(request):
     """
-    PAGINA DE NOVA TRANSAÇÃO COM FORM
+    VIEW DE NOVA TRANSAÇÃO COM FORM
     """
 
     form = TransacaoForm(request.POST or None)
@@ -42,3 +42,37 @@ def nova_transacao(request):
     
 
     return render(request, 'contas/form.html', {'form' : form})
+
+def update(request, pkey):
+    """
+    VIEW PARA UPDATE DE TRASAÇÕES
+    """
+    data = {}
+    transacao = Transacao.objects.get(pk=pkey)
+    form = TransacaoForm(request.POST or None, instance=transacao)
+
+    if form.is_valid():
+        form.save()
+        return redirect('url_listagem')
+    
+    data['form'] = form
+    data['transacao'] = transacao
+    return render(request, 'contas/form.html', data)
+
+def delete(request, pkey):
+    """
+    VIEW PARA DELETE DE TRASAÇÕES
+    """
+
+    transacao = Transacao.objects.get(pk=pkey)
+    transacao.delete()
+    return redirect('url_listagem')
+    
+    
+    form = TransacaoForm(request.POST or None, instance=transacao)
+
+    if form.is_valid():
+        form.save()
+    
+    data['form'] = form
+    return render(request, 'contas/form.html', data)
