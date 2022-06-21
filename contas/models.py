@@ -12,6 +12,9 @@ class Categoria(models.Model):
 
     class Meta:
         verbose_name_plural = 'Categorias'
+    
+    def __str__(self) -> str:
+        return self.nome
 
 class Transacao(models.Model):
     '''
@@ -28,3 +31,6 @@ class Transacao(models.Model):
 
     class Meta:
         verbose_name_plural = 'Transações'
+    
+    def __str__(self) -> str:
+        return self.descricao
