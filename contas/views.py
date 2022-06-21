@@ -1,14 +1,13 @@
 from django.shortcuts import render
 
-# Create your views here.
-
-
 from django.http import HttpResponse
 from datetime import datetime
 
+from .models import Transacao
+
 def home(request):
     """
-    PAGNA HOME RETORNA A HORA ATUAL
+    PAGINA HOME RETORNA A HORA ATUAL
     """
 
     # html = "<html><body>Quando são exactamente... %s.</body></html>" % agora
@@ -20,3 +19,12 @@ def home(request):
     page_data["agora"] = datetime.now()
     page_data["nomes"] = ["Felix", "Paulo", "Adelson"]
     return render(request, "contas/home.html", page_data)
+
+def listagem(request):
+    """
+    PAGINA PARA LISTAGEM DE TRANSAÇÕES
+    """
+
+    tran_data = {}
+    tran_data['transacoes'] = Transacao.objects.all()
+    return render(request, 'contas/listagem.html', tran_data)
